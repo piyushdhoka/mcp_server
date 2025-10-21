@@ -36,14 +36,14 @@ The server provides 8 powerful database tools:
 ### Prerequisites
 
 - Node.js 18+ or Bun
-- An Appwrite account and project
-- Appwrite database and collection setup
+- A Supabase account and project
+- Supabase database and tables setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ramxcodes/mcp-server.git
-cd mcp-server
+git clone https://github.com/piyushdhoka/mcp_server.git
+cd mcp_server
 ```
 
 ### 2. Install Dependencies
@@ -95,6 +95,49 @@ The web application provides:
 - **MCP Demo**: Live demonstration of the server functionality
 - **Video Showcase**: Visual guides and tutorials
 - **Documentation Links**: Quick access to resources
+
+### MCP Server Endpoints
+
+The MCP server is accessible via two transport methods:
+
+1. **HTTP/POST**: `https://mcp.sparkstudio.in/mcp`
+2. **Server-Sent Events (SSE)**: `https://mcp.sparkstudio.in/sse`
+
+### Database Schema
+
+The server expects a Supabase database with the following table structure:
+
+```sql
+-- Companies table
+CREATE TABLE companies (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  company_name TEXT NOT NULL,
+  company_id INTEGER UNIQUE NOT NULL,
+  description TEXT,
+  website TEXT,
+  employee_count INTEGER,
+  founded_year INTEGER,
+  industry TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security
+ALTER TABLE companies ENABLE ROW LEVEL SECURITY;
+
+-- Create policies (adjust based on your needs)
+CREATE POLICY "Enable read access for all users" ON companies
+  FOR SELECT USING (true);
+
+CREATE POLICY "Enable insert for authenticated users only" ON companies
+  FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Enable update for authenticated users only" ON companies
+  FOR UPDATE USING (true);
+
+CREATE POLICY "Enable delete for authenticated users only" ON companies
+  FOR DELETE USING (true);
+```
 
 ### MCP Server Endpoint
 

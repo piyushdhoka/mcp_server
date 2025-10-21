@@ -343,8 +343,11 @@ const handler = createMcpHandler(
     },
   },
   {
+    sseEndpoint: "/sse",
+    streamableHttpEndpoint: "/mcp",
     verboseLogs: true,
+    maxDuration: 60,
   }
 );
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST, handler as DELETE };
