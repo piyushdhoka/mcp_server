@@ -122,7 +122,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-white">AppWrite</span>
+              <span className="text-white">Supabase</span>
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
                 MCP Server

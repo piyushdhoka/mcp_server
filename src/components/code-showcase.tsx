@@ -291,7 +291,7 @@ export const supabaseTools = {
   // Supabase Get Document Tool
   getDocument: {
     name: "getDocument",
-    description: "Get a document by its unique ID from the Appwrite database",
+    description: "Get a document by its unique ID from the Supabase database",
     schema: {
       documentId: z
         .string()
@@ -371,7 +371,7 @@ export const supabaseTools = {
     },
   },
 
-  // Appwrite List Documents Tool
+  // Supabase List Documents Tool
   listDocuments: {
     name: "listDocuments",
     description: "List all documents from the companies collection",
@@ -456,10 +456,10 @@ export const supabaseTools = {
     },
   },
 
-  // Appwrite Create Document Tool
+  // Supabase Create Document Tool
   createDocument: {
     name: "createDocument",
-    description: "Create a new document in the Appwrite database",
+    description: "Create a new document in the Supabase database",
     schema: {
       company_name: z.string().describe("The name of the company"),
       company_id: z
@@ -556,10 +556,10 @@ export const supabaseTools = {
     },
   },
 
-  // Appwrite Update Document Tool
+  // Supabase Update Document Tool
   updateDocument: {
     name: "updateDocument",
-    description: "Update an existing document in the Appwrite database",
+    description: "Update an existing document in the Supabase database",
     schema: {
       documentId: z
         .string()
@@ -662,10 +662,10 @@ export const supabaseTools = {
     },
   },
 
-  // Appwrite Delete Document Tool
+  // Supabase Delete Document Tool
   deleteDocument: {
     name: "deleteDocument",
-    description: "Delete a document from the Appwrite database",
+    description: "Delete a document from the Supabase database",
     schema: {
       documentId: z
         .string()
@@ -736,11 +736,11 @@ export const supabaseTools = {
     },
   },
 
-  // Appwrite Upsert Document Tool
+  // Supabase Upsert Document Tool
   upsertDocument: {
     name: "upsertDocument",
     description:
-      "Create or update a document in the Appwrite database (upsert operation)",
+      "Create or update a document in the Supabase database (upsert operation)",
     schema: {
       documentId: z
         .string()
@@ -904,7 +904,7 @@ export const supabaseTools = {
     "motion": "^12.15.0",
     "next": "15.3.3",
     "next-themes": "^0.4.6",
-    "node-appwrite": "^17.0.0",
+    "@supabase/supabase-js": "^2.76.1",
     "react": "^19.0.0",
     "react-day-picker": "8.10.1",
     "react-dom": "^19.0.0",

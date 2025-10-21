@@ -28,7 +28,7 @@ export default function LinkAndInfo() {
         </h2>
         <p className="text-slate-400 text-lg max-w-2xl mx-auto">
           Explore the source code, contribute to the project, and start building
-          with the AppWrite MCP Server
+          with the Supabase MCP Server
         </p>
       </motion.div>
 

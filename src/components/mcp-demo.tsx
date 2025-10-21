@@ -104,7 +104,7 @@ export default function MCPDemo() {
           MCP Server in Action
         </h2>
         <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-          Watch the AppWrite MCP Server handle database operations in real-time
+          Watch the Supabase MCP Server handle database operations in real-time
         </p>
       </motion.div>
 
@@ -142,7 +142,7 @@ export default function MCPDemo() {
           <CardContent>
             <div className="bg-slate-950/80 rounded-lg p-6 font-mono text-sm min-h-[400px]">
               <div className="text-green-400 mb-4">
-                $ AppWrite MCP Server Demo
+                $ Supabase MCP Server Demo
               </div>
 
               <AnimatePresence>
