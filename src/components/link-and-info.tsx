@@ -76,7 +76,7 @@ export default function LinkAndInfo() {
                 Deployed by{" "}
                 <Link
                   className="underline text-blue-400"
-                  href="https://sparkstudio.in"
+                  href="https://piyush.sparkstudio.co.in/"
                   target="_blank"
                 >
                   Piyush Dhoka
@@ -85,7 +85,7 @@ export default function LinkAndInfo() {
                 Developed by{" "}
                 <Link
                   className="underline"
-                  href="https://github.com/piyushdhoka"
+                  href="https://piyush.sparkstudio.co.in/"
                   target="_blank"
                 >
                   Piyush Dhoka
