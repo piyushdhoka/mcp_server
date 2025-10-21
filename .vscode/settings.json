@@ -1,23 +1,10 @@
 {
-    "cSpell.words": [
-        "Altranium",
-        "appwrite",
-        "Bhindi",
-        "Expelee",
-        "Flameloop",
-        "GSAP",
-        "Madhya",
-        "Medi",
-        "MERN",
-        "modelcontextprotocol",
-        "Pradesh",
-        "Ramkrishna",
-        "ramx",
-        "Ramxcodes",
-        "Riskmitra",
-        "shadcn",
-        "streamable",
-        "Swarnkar",
-        "Syncify"
-    ]
+   
+    "github.copilot.chat.mcp.servers": {
+        "supabase-mcp-production": {
+            "type": "http",
+            "url": "https://mcp.sparkstudio.co.in/mcp",
+            "timeout": 60000
+        }
+    }
 }

@@ -40,7 +40,7 @@ const demoSteps = [
     id: 5,
     command: "updateDocument",
     description: "Updating document with ID 1...",
-    result: "Document updated new name : Bhindi AI",
+    result: "Document updated new name : IBM",
     delay: 1000,
   },
   {

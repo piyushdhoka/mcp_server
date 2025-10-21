@@ -45,11 +45,11 @@ const terminalCommands = [
     delay: 2000,
   },
   {
-    command: "mcp.createDocument({ title: 'Bhindi AI' })",
+    command: "mcp.createDocument({ title: 'IBM' })",
     status: "success",
     delay: 3000,
   },
-  { command: "mcp.getDocument('Bhindi AI')", status: "success", delay: 4000 },
+  { command: "mcp.getDocument('IBM')", status: "success", delay: 4000 },
 ];
 
 const floatingCards = [

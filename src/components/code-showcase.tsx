@@ -11,173 +11,220 @@ const codeFiles = {
   "route.ts": `
 import { createMcpHandler } from "@vercel/mcp-adapter";
 import { z } from "zod";
-import { appwriteTools } from "../../lib/tools/appwrite";
+import { supabaseTools } from "../../lib/tools/supabase";
 
 const handler = createMcpHandler(
   (server) => {
     // Creator Info Tool
     server.tool(
       "creatorInfo",
-      "Get detailed information about Ramkrishna Swarnkar - Full Stack Developer and Open Source Contributor",
+      "Get detailed information about Piyush Dhoka - AI/ML Engineer and Developer",
       {},
       async () => ({
         content: [
           {
             type: "text" as const,
-            text: "Creator info",
+            text: "# Piyush Dhoka - AI/ML Engineer & Developer",
           },
         ],
       })
     );
 
-    // Appwrite Get Document Tool
+    // Supabase Get Document Tool
     server.tool(
       "getDocument",
-      "Get a document by its unique ID from the Appwrite database",
+      "Get a document by its unique ID from the Supabase database",
       {
         documentId: z
           .string()
-          .describe("The unique ID of the document to retrieve"),
-        collectionId: z
+          .describe("The unique ID (UUID) of the document to retrieve"),
+        tableName: z
           .string()
           .optional()
-          .describe("The collection ID (defaults to 'company_names')"),
+          .describe("The table name (defaults to 'companies')"),
       },
-      async ({ documentId, collectionId }) => {
-        return await appwriteTools.getDocument.handler({
+      async ({ documentId, tableName }) => {
+        return await supabaseTools.getDocument.handler({
           documentId,
-          collectionId,
+          tableName,
         });
       }
     );
 
-    // Appwrite List Documents Tool
+    // Supabase List Documents Tool
     server.tool(
       "listDocuments",
-      "List all documents from the companies collection",
+      "List all documents from a Supabase table with pagination and sorting",
       {
-        collectionId: z
+        tableName: z
           .string()
           .optional()
-          .describe("The collection ID (defaults to 'company_names')"),
+          .describe("The table name (defaults to 'companies')"),
         limit: z
           .number()
           .optional()
           .describe("Maximum number of documents to return (defaults to 25)"),
+        offset: z
+          .number()
+          .optional()
+          .describe("Number of records to skip (defaults to 0)"),
+        orderBy: z
+          .string()
+          .optional()
+          .describe("Column to order by (defaults to 'created_at')"),
+        ascending: z
+          .boolean()
+          .optional()
+          .describe("Sort order (defaults to false for descending)"),
       },
-      async ({ collectionId, limit }) => {
-        return await appwriteTools.listDocuments.handler({
-          collectionId,
+      async ({ tableName, limit, offset, orderBy, ascending }) => {
+        return await supabaseTools.listDocuments.handler({
+          tableName,
           limit,
+          offset,
+          orderBy,
+          ascending,
         });
       }
     );
 
-    // Appwrite Create Document Tool
+    // Supabase Create Document Tool
     server.tool(
       "createDocument",
-      "Create a new document in the Appwrite database",
+      "Create a new document in the Supabase database",
       {
         company_name: z.string().describe("The name of the company"),
         company_id: z
           .number()
           .describe("The unique identifier for the company (integer)"),
-        documentId: z
+        description: z.string().optional().describe("Company description"),
+        website: z.string().optional().describe("Company website URL"),
+        employee_count: z.number().optional().describe("Number of employees"),
+        founded_year: z.number().optional().describe("Year the company was founded"),
+        industry: z.string().optional().describe("Industry sector"),
+        tableName: z
           .string()
           .optional()
-          .describe(
-            "Optional custom document ID (auto-generated if not provided)"
-          ),
-        collectionId: z
-          .string()
-          .optional()
-          .describe("The collection ID (defaults to 'company_names')"),
+          .describe("The table name (defaults to 'companies')"),
       },
-      async ({ company_name, company_id, documentId, collectionId }) => {
-        return await appwriteTools.createDocument.handler({
+      async ({ company_name, company_id, description, website, employee_count, founded_year, industry, tableName }) => {
+        return await supabaseTools.createDocument.handler({
           company_name,
           company_id,
-          documentId,
-          collectionId,
+          description,
+          website,
+          employee_count,
+          founded_year,
+          industry,
+          tableName,
         });
       }
     );
 
-    // Appwrite Update Document Tool
+    // Supabase Update Document Tool
     server.tool(
       "updateDocument",
-      "Update an existing document in the Appwrite database",
+      "Update an existing document in the Supabase database",
       {
         documentId: z
           .string()
-          .describe("The unique ID of the document to update"),
-        company_name: z
+          .describe("The unique ID (UUID) of the document to update"),
+        company_name: z.string().optional().describe("The name of the company"),
+        company_id: z.number().optional().describe("The unique identifier"),
+        description: z.string().optional().describe("Company description"),
+        website: z.string().optional().describe("Company website URL"),
+        employee_count: z.number().optional().describe("Number of employees"),
+        founded_year: z.number().optional().describe("Year founded"),
+        industry: z.string().optional().describe("Industry sector"),
+        tableName: z
           .string()
           .optional()
-          .describe("The name of the company (optional)"),
-        company_id: z
-          .number()
-          .optional()
-          .describe("The unique identifier for the company (optional integer)"),
-        collectionId: z
-          .string()
-          .optional()
-          .describe("The collection ID (defaults to 'company_names')"),
+          .describe("The table name (defaults to 'companies')"),
       },
-      async ({ documentId, company_name, company_id, collectionId }) => {
-        return await appwriteTools.updateDocument.handler({
+      async ({ documentId, company_name, company_id, description, website, employee_count, founded_year, industry, tableName }) => {
+        return await supabaseTools.updateDocument.handler({
           documentId,
           company_name,
           company_id,
-          collectionId,
+          description,
+          website,
+          employee_count,
+          founded_year,
+          industry,
+          tableName,
         });
       }
     );
 
-    // Appwrite Delete Document Tool
+    // Supabase Delete Document Tool
     server.tool(
       "deleteDocument",
-      "Delete a document from the Appwrite database",
+      "Delete a document from the Supabase database",
       {
         documentId: z
           .string()
-          .describe("The unique ID of the document to delete"),
-        collectionId: z
+          .describe("The unique ID (UUID) of the document to delete"),
+        tableName: z
           .string()
           .optional()
-          .describe("The collection ID (defaults to 'company_names')"),
+          .describe("The table name (defaults to 'companies')"),
       },
-      async ({ documentId, collectionId }) => {
-        return await appwriteTools.deleteDocument.handler({
+      async ({ documentId, tableName }) => {
+        return await supabaseTools.deleteDocument.handler({
           documentId,
-          collectionId,
+          tableName,
         });
       }
     );
 
-    // Appwrite Upsert Document Tool
+    // Supabase Upsert Document Tool
     server.tool(
       "upsertDocument",
-      "Create or update a document in the Appwrite database (upsert operation)",
+      "Create or update a document in the Supabase database (upsert operation)",
       {
-        documentId: z
-          .string()
-          .describe("The unique ID of the document to create or update"),
         company_name: z.string().describe("The name of the company"),
-        company_id: z
-          .number()
-          .describe("The unique identifier for the company (integer)"),
-        collectionId: z
+        company_id: z.number().describe("The unique identifier for the company"),
+        description: z.string().optional().describe("Company description"),
+        website: z.string().optional().describe("Company website URL"),
+        employee_count: z.number().optional().describe("Number of employees"),
+        founded_year: z.number().optional().describe("Year founded"),
+        industry: z.string().optional().describe("Industry sector"),
+        tableName: z
           .string()
           .optional()
-          .describe("The collection ID (defaults to 'company_names')"),
+          .describe("The table name (defaults to 'companies')"),
       },
-      async ({ documentId, company_name, company_id, collectionId }) => {
-        return await appwriteTools.upsertDocument.handler({
-          documentId,
+      async ({ company_name, company_id, description, website, employee_count, founded_year, industry, tableName }) => {
+        return await supabaseTools.upsertDocument.handler({
           company_name,
           company_id,
-          collectionId,
+          description,
+          website,
+          employee_count,
+          founded_year,
+          industry,
+          tableName,
+        });
+      }
+    );
+
+    // Supabase Clear Collection Tool
+    server.tool(
+      "clearCollection",
+      "Delete all documents from a Supabase table (use with caution!)",
+      {
+        tableName: z
+          .string()
+          .optional()
+          .describe("The table name (defaults to 'companies')"),
+        confirm: z
+          .boolean()
+          .describe("Must be set to true to confirm deletion of all records"),
+      },
+      async ({ tableName, confirm }) => {
+        return await supabaseTools.clearCollection.handler({
+          tableName,
+          confirm,
         });
       }
     );
@@ -187,27 +234,31 @@ const handler = createMcpHandler(
       tools: {
         creatorInfo: {
           description:
-            "Get detailed information about Ramkrishna Swarnkar",
+            "Get detailed information about Piyush Dhoka - AI/ML Engineer",
         },
         getDocument: {
           description:
-            "Get a document by its unique ID from the Appwrite database",
+            "Get a document by its unique ID from the Supabase database",
         },
         listDocuments: {
-          description: "List all documents from the companies collection",
+          description: "List all documents from a Supabase table with pagination and sorting",
         },
         createDocument: {
-          description: "Create a new document in the Appwrite database",
+          description: "Create a new document in the Supabase database.",
         },
         updateDocument: {
-          description: "Update an existing document in the Appwrite database",
+          description: "Update an existing document in the Supabase database",
         },
         deleteDocument: {
-          description: "Delete a document from the Appwrite database",
+          description: "Delete a document from the Supabase database",
         },
         upsertDocument: {
           description:
-            "Create or update a document in the Appwrite database (upsert operation)",
+            "Create or update a document in the Supabase database (upsert operation)",
+        },
+        clearCollection: {
+          description:
+            "Delete all documents from a Supabase table (use with caution!)",
         },
       },
     },
@@ -224,29 +275,20 @@ export { handler as GET, handler as POST, handler as DELETE };
 
   `,
 
-  "appwrite.ts": `import { Client, Databases } from "node-appwrite";
+  "supabase.ts": `import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
-const APPWRITE_ENDPOINT = process.env.APPWRITE_ENDPOINT;
-const APPWRITE_PROJECT_ID = process.env.APPWRITE_PROJECT_ID;
-const APPWRITE_API_KEY = process.env.APPWRITE_API_KEY;
-const DATABASE_ID = process.env.DATABASE_ID;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-const client = new Client();
-
-if (APPWRITE_ENDPOINT && APPWRITE_PROJECT_ID && APPWRITE_API_KEY) {
-  client
-    .setEndpoint(APPWRITE_ENDPOINT)
-    .setProject(APPWRITE_PROJECT_ID)
-    .setKey(APPWRITE_API_KEY);
-} else {
-  console.error("Missing required Appwrite environment variables");
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  throw new Error("Missing Supabase environment variables");
 }
 
-const databases = new Databases(client);
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-export const appwriteTools = {
-  // Appwrite Get Document Tool
+export const supabaseTools = {
+  // Supabase Get Document Tool
   getDocument: {
     name: "getDocument",
     description: "Get a document by its unique ID from the Appwrite database",
@@ -813,7 +855,7 @@ export const appwriteTools = {
 };`,
 
   "package.json": `{
-  "name": "assignment",
+  "name": "supabase-mcp-server",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -893,7 +935,7 @@ export const appwriteTools = {
 const fileStructure = [
   { name: "src", type: "folder", level: 0, expanded: true },
   { name: "route.ts", type: "file", level: 0 },
-  { name: "appwrite.ts", type: "file", level: 0 },
+  { name: "supabase.ts", type: "file", level: 0 },
   { name: "package.json", type: "file", level: 0 },
 ];
 

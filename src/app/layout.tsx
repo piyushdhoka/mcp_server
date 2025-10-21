@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AppWrite MCP Server | Ramxcodes",
-  description: "AppWrite MCP Server | Ramxcodes",
+  title: "Supabase MCP Server | Piyush Dhoka",
+  description: "Supabase MCP Server - Model Context Protocol server for Supabase database operations by Piyush Dhoka",
 };
 
 export default function RootLayout({
