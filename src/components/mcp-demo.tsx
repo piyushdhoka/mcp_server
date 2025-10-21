@@ -86,7 +86,7 @@ export default function MCPDemo() {
   };
 
   return (
-    <section className="container mx-auto px-4 py-20">
+    <section className="site-container py-16 md:py-20">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export default function MCPDemo() {
         >
           Live Demo
         </Badge>
-        <h2 className="text-4xl font-bold text-white mb-4">
+        <h2 className="fluid-title font-bold text-white mb-4">
           MCP Server in Action
         </h2>
         <p className="text-slate-400 text-lg max-w-2xl mx-auto">

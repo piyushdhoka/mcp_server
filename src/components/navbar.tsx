@@ -51,9 +51,10 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4"
+      className="fixed top-4 z-50 w-full"
     >
-      <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 shadow-2xl rounded-2xl">
+      <div className="site-container">
+        <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 shadow-2xl rounded-2xl">
         <div className="flex items-center justify-between h-16 lg:h-20 px-6">
           {/* Logo */}
           <motion.div
@@ -203,6 +204,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </motion.nav>
   );

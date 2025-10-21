@@ -93,7 +93,7 @@ export default function HeroSection() {
   }, [showTerminal]);
 
   return (
-    <section className="container mx-auto px-4 py-20 min-h-screen flex items-center mt-10">
+    <section className="site-container py-16 md:py-20 min-h-screen flex items-center mt-6 md:mt-10">
       <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
         {/* Left side - Main content */}
         <motion.div
@@ -121,7 +121,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="text-6xl lg:text-7xl font-bold leading-tight">
+            <h1 className="fluid-display font-bold">
               <span className="text-white">Supabase</span>
               <br />
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
@@ -132,7 +132,7 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.p
-            className="text-xl text-slate-300 leading-relaxed max-w-lg"
+            className="fluid-title text-slate-300 leading-relaxed max-w-prose"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
