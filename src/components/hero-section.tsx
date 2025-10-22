@@ -155,7 +155,7 @@ export default function HeroSection() {
               jitterStrength={5}
               jitterSpeed={3}
               sampleAverage
-              tintColor="#3ECF8E"
+              tintColor="#3B82F6"
               tintStrength={0.3}
               responsive
               className="rounded-xl border border-slate-800 shadow-2xl w-full max-w-lg"
