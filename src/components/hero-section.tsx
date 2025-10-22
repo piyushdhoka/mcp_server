@@ -3,6 +3,7 @@
 import { ScriptCopyBtnDemo } from "./copy-url-btn";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import {
   Database,
   Zap,
@@ -131,15 +132,35 @@ export default function HeroSection() {
             </h1>
           </motion.div>
 
-          <motion.p
-            className="fluid-title text-slate-300 leading-relaxed max-w-prose"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="my-8"
           >
-            Seamlessly integrate powerful database operations into your
-            applications with our Model Context Protocol server.
-          </motion.p>
+            <PixelatedCanvas
+              src="/logo-preview.png"
+              width={480}
+              height={270}
+              cellSize={3}
+              dotScale={0.9}
+              shape="square"
+              backgroundColor="#000000"
+              dropoutStrength={0.3}
+              interactive
+              distortionStrength={4}
+              distortionRadius={80}
+              distortionMode="swirl"
+              followSpeed={0.15}
+              jitterStrength={5}
+              jitterSpeed={3}
+              sampleAverage
+              tintColor="#3ECF8E"
+              tintStrength={0.3}
+              responsive
+              className="rounded-xl border border-slate-800 shadow-2xl w-full max-w-lg"
+            />
+          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
